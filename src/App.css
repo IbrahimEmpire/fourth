@@ -1,0 +1,73 @@
+/* .App {
+  /* text-align: center; */
+/* } */ 
+
+.ad-clr{
+  display: flex;
+}
+.user-container {
+  padding: 1rem;
+  font-size: 20px;
+  display: flex;
+}
+.error{
+  height: 700px;
+  width: 700px;
+  object-fit: cover;
+}
+
+.welcome{
+  height: 800px;
+  width: 1000px;
+  object-fit: cover;
+}
+.profile-pic{
+  height: 500px;
+  width: 500px;
+  object-fit: cover;
+}
+.tittle{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+.container{
+  width: 300px;
+  margin: 10px;
+  height: 800px;
+}
+.img{
+  width: 300px;
+  object-fit: cover;
+  height: 500px;
+}
+.name{
+  font-size: 25px;
+  margin: 0;
+}
+.rating{
+  font-size: 25px;
+}
+.summary{
+  margin-top: 0;
+}
+.booklist{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; 
+  margin: 20px;
+ }
+.button{
+  width: 70px;
+  height:30px ;
+}
+.input{
+  display: flex;
+flex-direction: column;
+margin: 20px;
+}
+.bookDetail{
+  max-width: 900px;
+  padding: 20px;
+}
