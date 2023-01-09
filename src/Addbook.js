@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import {API} from './global'
 import TextField from '@mui/material/TextField';
+import { useFormik } from "formik";
+import * as yup from "yup";
 
 
 export function Addbook({ bookList, setBookList }) {
@@ -12,79 +14,132 @@ export function Addbook({ bookList, setBookList }) {
   const [summary, setSummary] = useState("");
   const [video, setVideo] = useState("");
   const navigate = useNavigate();
+  const formik = useFormik({
+    initialValues : {
+       name : "",
+       poster: "",
+       rating: "",
+       summary: "",
+       video: "",
+      },
+    // validationSchema : formValidationSchema,
+    onSubmit : (newbook) => {
+      // console.log("submit values", newbook)
+      creatBook(newbook)
+    }
+  })
+
+const creatBook = (newbook) => {
+console.log("updater value ", newbook)
+
+    fetch(`${API}/books/`,{
+      method: "POST",
+      body: JSON.stringify(newbook),
+      headers: {"content-Type": "application/json"}
+    } )
+        .then((data) => data.json()).then(()=>navigate("/book"))
+       
+
+
+}
+
   return (
     
-    <div className='input'>
+    <form onSubmit={formik.handleSubmit}  className='input'>
       <TextField
         label="Book Name"
         variant="outlined"
         type="text"
+        name="name"
+  id="name"
         placeholder='Enter Book Name'
-        onChange={(event) => setName(event.target.value)}
-        value={name} />
+        onChange={formik.handleChange}
+        onBlur = {formik.handleChange}
+      
+        value={formik.values.name}
+         />
       <br>
       </br>
       <TextField
+        label="poster"
         variant="outlined"
-        label="Poster"
         type="text"
-        placeholder='Enter Book Poster'
-        onChange={(event) => setPoster(event.target.value)}
-        value={poster} />
+        name="poster"
+  id="poster"
+        placeholder='Enter Book poster'
+        onChange={formik.handleChange}
+        onBlur = {formik.handleChange}
+      
+        value={formik.values.poster} />
       <br>
       </br>
       <TextField
+        label="Book rating"
         variant="outlined"
-        label="Rating"
-        type="text"
-        placeholder='Enter Book Rating'
-        onChange={(event) => setRating(event.target.value)}
-        value={rating} />
+        type="rating"
+        name="rating"
+  id="name"
+        placeholder='Enter Book rating'
+        onChange={formik.handleChange}
+        onBlur = {formik.handleChange}
+      
+        value={formik.values.rating} />
       <br>
       </br>
       <TextField
-        variant="outlined"
-        label="Summary"
-        type="text"
-        placeholder='Enter Book Summary'
-        onChange={(event) => setSummary(event.target.value)}
-        value={summary} />
+     label="Book summary"
+     variant="outlined"
+     type="text"
+     name="summary"
+id="summary"
+     placeholder='Enter Book summary'
+     onChange={formik.handleChange}
+     onBlur = {formik.handleChange}
+   
+     value={formik.values.summary} />
       <br></br>
       <TextField
+        label="Book video"
         variant="outlined"
-        label="Video"
         type="text"
-        placeholder='Enter Book Video'
-        onChange={(event) => setVideo(event.target.value)}
-        value={video} />
+        name="video"
+  id="video"
+        placeholder='Enter Book video'
+        onChange={formik.handleChange}
+        onBlur = {formik.handleChange}
+      
+        value={formik.values.video} />
       <br></br>
       <Button
         variant="contained"
-        onClick={() => {
-          const newbook = {
-            name: name,
-            poster: poster,
-            rating: rating,
-            summary: summary,
-            video: video
-          };
+        onClick= {creatBook}
+          //  {
+          // const newbook = {
+          //   name: name,
+          //   poster: poster,
+          //   rating: rating,
+          //   summary: summary,
+          //   video: video
+          // };
 
-          fetch(`${API}/books/`,{
-            method: "POST",
-            body: JSON.stringify(newbook),
-            headers: {"content-Type": "application/json"}
-          } )
-              .then((data) => data.json()).then(()=>navigate("/book"))
-              // navigate("/book");
+          // fetch(`${API}/books/`,{
+          //   method: "POST",
+          //   body: JSON.stringify(newbook),
+          //   headers: {"content-Type": "application/json"}
+          // } )
+          //     .then((data) => data.json()).then(()=>navigate("/book"))
+          //     // navigate("/book");
           // const data = bookList;
           // const data1 = [...data, newbook];
           // console.log(data1);
           // setBookList(data1);
           // navigate("/book");
-        }}
+        // }
+      
+        type= "submit"
       >Add book</Button>
 
-    </div>
+    </form>
     
   );
 }
