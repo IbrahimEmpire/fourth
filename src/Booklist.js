@@ -32,73 +32,7 @@ export function Booklist() {
   useEffect(() => getBook, [])
   return (
     <div>
-      {/* <div className='input'>
-      <TextField 
-      label="Book Name"
-      variant="outlined"
-      type="text"
-      placeholder='Enter Book Name'
-      onChange={(event)=> setName(event.target.value)}
-      value ={name}
-      />
-      <br>
-      </br>
-       <TextField 
-       variant="outlined"
-       label="Poster"
-      type="text"
-      placeholder='Enter Book Poster'
-      onChange={(event)=> setPoster(event.target.value)}
-      value ={poster}
-      />
-      <br>
-      </br>
-       <TextField 
-       variant="outlined"
-       label="Rating"
-      type="text"
-      placeholder='Enter Book Rating'
-      onChange={(event)=> setRating(event.target.value)}
-      value ={rating}
-      />
-      <br>
-      </br>
-       <TextField 
-       variant="outlined"
-       label="Summary"
-      type="text"
-      placeholder='Enter Book Summary'
-      onChange={(event)=> setSummary(event.target.value)}
-      value={summary}
-      />
-      <br></br>
-      <TextField 
-       variant="outlined"
-       label="Video"
-      type="text"
-      placeholder='Enter Book Video'
-      onChange={(event)=> setVideo(event.target.value)}
-      value={video}
-      />
-      <br></br>
-      <Button
-       variant="contained"
-      onClick={() =>{
-        const newbook ={
-          name : name,
-          poster : poster,
-          rating : rating,
-          summary : summary
-        }
-       
-        const data = bookList
-        const data1 = [...data, newbook]
-        console.log(data1)
-        setBookList(data1)
-      } }
-      >Add book</Button>
       
-</div> */}
 
 <div className='booklist' >
       {bookList.map((bk) => (
